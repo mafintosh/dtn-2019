@@ -6,6 +6,11 @@
   <title>Big</title>
   <link href="big.css" rel="stylesheet" type="text/css" />
   <script src="big.js"></script>
+  <style>
+    .one {
+      white-space: nowrap;
+    }
+  </style>
 </head>
 <body class="light">
   <div>
@@ -42,7 +47,42 @@
     Hyper<em>drive</em>
   </div>
   <div>
-    HAMT
+    Hyperdrive is our file system abstraction
+  </div>
+  <div>
+    Implements a distributed POSIX* FS, focused on real time updates
+  </div>
+  <div>
+    Uses a 2 hypercore design
+  </div>
+  <div>
+    <span class="one">1 metadata hypercore</span><br>
+    <span class="one">1 content hypercore</span>
+  </div>
+  <div>
+    Metadata hypercore:
+
+<pre>
+0: [header with a link to the content feed]
+1: name: foo.txt, contentPtr: 0, blocks: 10, [lookup-tree-index]
+2: name: bar.txt, contentPtr: 10, blocks: 1, [lookup-tree-index]
+...
+</pre>
+  </div>
+  <div>
+    lookup-tree-index is an embedded data structure that allows distributed random access
+  </div>
+  <div>
+    <em>Problem</em>:<br> Writing tons of files to a folder slows down lookups
+  </div>
+  <div>
+    The current tree index does a linear scan of a folder to find an entry
+  </div>
+  <div>
+    <em>Solution</em>:<br> In Hyperdrive 10 we moved to a hash trie (HAMT)
+  </div>
+  <div>
+    Find any entry in log4(metadata.length) lookups
   </div>
   <div>
     Mounts
@@ -52,6 +92,9 @@
   </div>
   <div>
     FUSE
+  </div>
+  <div>
+    Follow v10 -> https://github.com/mafintosh/hyperdrive/pull/233
   </div>
   <div>
     Hyper<em>swarm</em>
