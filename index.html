@@ -10,6 +10,10 @@
     .one {
       white-space: nowrap;
     }
+
+    #small {
+      transition: font-size 1s ease;
+    }
   </style>
 </head>
 <body class="light">
@@ -73,6 +77,27 @@
     lookup-tree-index is an embedded data structure that allows distributed random access
   </div>
   <div>
+    <span class="one">Upcoming version: Hyperdrive 10</span>
+  </div>
+  <div>
+    <span class="one">Andrew Osheroff (andrewosh)</span>
+    <div class="one">Mathias Buus (mafintosh)</div>
+  </div>
+  <div>
+    <span class="one">Andrew Osheroff (andrewosh)</span>
+    <div class="one" id="small">Mathias Buus (mafintosh)</div>
+    <script>
+      document.addEventListener('keyup', function () {
+        if (document.querySelector('#small').parentElement.parentElement.style.display === 'none') {
+          document.querySelector('#small').style.fontSize = 'inherit'
+        } else {
+          document.querySelector('#small').style.fontSize = '20px'
+        }
+      })
+      console.log('hi')
+    </script>
+  </div>
+  <div>
     <em>Problem</em>:<br> Writing tons of files to a folder slows down lookups
   </div>
   <div>
@@ -85,7 +110,7 @@
     Find any entry in log4(metadata.length) lookups
   </div>
   <div>
-    HAMT TL;DR. We want to support:
+    HAMT crash course. We want to support:
 
 <pre>
 drive.get('/file/path/somewhere') -> entry
@@ -123,7 +148,7 @@ trie_path('/file/path/somewhere') ->
 </pre>
   </div>
   <div>
-    Write pointers to each latest core entry that shares a prefix or your trie path
+    Write pointers to each latest core entry that shares a prefix off your trie path
   </div>
   <div>
 <pre>
@@ -309,15 +334,21 @@ trie_path('/file/path/somewhere') ->
     The <span class="one">lookup-tree-index</span> contains only the branch pointers
   </div>
   <div>
+    lookup-tree-index:
+<pre>
+[
+  [ 1, 1, 35 ] // branches at index 1, into 1 (seq #35)
+  [ 4, 2, 39 ] // branches at index 4, into 2 (seq #39)
+]
+</pre>
+  </div>
+  <div>
     To find a file path do:
 
 <pre>
   target_trie_path = trie_path('/path/we/want')
   head = core.get(core.length - 1)
 </pre>
-  </div>
-  <div>
-    Calculate the shared prefix between target_trie_path and head.trie_path
   </div>
   <div>
 <pre>
@@ -334,7 +365,55 @@ lookup (head) ->
 </pre>
   </div>
   <div>
-    Mounts
+    Status:<br>
+    Fully working, tested, and implemented 😎
+  </div>
+  <div>
+    Problem: Collaborating with and consuming multiple Hyperdrives is hard
+  </div>
+  <div>
+    (Multiwriter)
+  </div>
+  <div>
+    Solution: Hyperdrive 10 adds mount support
+  </div>
+  <div>
+    Mounts mean you can mount other hyperdrives inside your own hyperdrive
+  </div>
+  <div>
+<pre>
+drive.mount('/some/path', 'deadbeef')
+</pre>
+  </div>
+  <div>
+    Mounts are persisted inside the metadata in a scalable way
+  </div>
+  <div>
+    Mounted drives can symlink files outside their own drive*
+  </div>
+  <div>
+    Much simpler and more flexible design that our previous endevours
+  </div>
+  <div>
+    Mount points are simply stored inside the hash trie
+  </div>
+  <div>
+<pre>
+drive.mount('/some/path', 'deadbeef')
+drive.get('/some/path/and/stuff')
+
+1. Does a lookup in the local trie.
+2. The last node has a mount flag set.
+3. Loads the mounted drive and performs
+   a .get('/and/stuff') on the mount
+</pre>
+  </div>
+  <div>
+    Status:<br>
+    ~Working, implemented, but needs testing 👍
+  </div>
+  <div>
+    We plan on adding support for "overlapping" mounts as well, but in later releases.
   </div>
   <div>
     Inodes
@@ -343,7 +422,8 @@ lookup (head) ->
     FUSE
   </div>
   <div>
-    Follow v10 -> https://github.com/mafintosh/hyperdrive/pull/233
+    Follow v10 dev ->
+    <a href="https://github.com/mafintosh/hyperdrive/pull/233">https://github.com/mafintosh/hyperdrive/pull/233</a>
   </div>
   <div>
     Hyper<em>swarm</em>
