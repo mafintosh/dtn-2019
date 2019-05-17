@@ -11,8 +11,20 @@
       white-space: nowrap;
     }
 
+    em {
+      color: red;
+    }
+
     #small {
       transition: font-size 1s ease;
+    }
+
+    .hide, .hide3 {
+      transition: opacity 1s ease;
+    }
+
+    .hide2 {
+      opacity: 0.1;
     }
   </style>
 </head>
@@ -24,44 +36,175 @@
     @mafintosh
   </div>
   <div>
-    Dat protocol lead
+    <span class="one">Dat protocol lead</span>
   </div>
   <div>
-    (eco system drawing)
+<pre>
+       + ---------------------------+
+Dat ~= | Dat cli, dat-js, etc       |
+       + ----------+----------------+
+       | Other     | Hyperdrive     |
+       + ----------+----------------+
+       | Discovery | Hypercore      |
+       + ----------+----------------+
+</pre>
   </div>
   <div>
-    Hyper<em>☆</em>
+<pre>
+<span class="hide">       + ---------------------------+
+Dat ~= | Dat cli, dat-js, etc       |
+       + ----------</span>+----------------+
+       <span class="hide">| Other     </span>| Hyperdrive     |
+       + ----------+----------------+
+       | Discovery | Hypercore      |
+       + ----------+----------------+
+</pre>
+  <script type="text/javascript">
+  document.addEventListener('keyup', function () {
+    if (document.querySelector('.hide').parentElement.parentElement.parentElement.style.display === 'none') {
+      for (const el of document.querySelectorAll('.hide')) {
+        el.style.opacity = '1'
+      }
+    } else {
+      for (const el of document.querySelectorAll('.hide')) {
+        el.style.opacity = '0.1'
+      }
+    }
+  })
+  </script>
   </div>
   <div>
-    Core Team
+<pre>
+<span class="hide2">       + ---------------------------+
+Dat ~= | Dat cli, dat-js, etc       |
+       + ----------</span>+----------------+
+       <span class="hide2">| Other     </span>| Hyperdrive     |
+       <span class="hide3">+ ----------</span>+----------------+
+       <span class="hide3">| Discovery </span>| Hypercore      |
+       <span class="hide3">+ ----------</span>+----------------+
+</pre>
+  <script type="text/javascript">
+  document.addEventListener('keyup', function () {
+    if (document.querySelector('.hide3').parentElement.parentElement.parentElement.style.display === 'none') {
+      for (const el of document.querySelectorAll('.hide3')) {
+        el.style.opacity = '1'
+      }
+    } else {
+      for (const el of document.querySelectorAll('.hide3')) {
+        el.style.opacity = '0.1'
+      }
+    }
+  })
+  </script>
   </div>
   <div>
-    Hyper<em>core</em>
+    5 Person Core Team
   </div>
   <div>
-    HSM support
+    andrewosh, mafintosh, pfrazee, emilbayes, davidmarkclements
   </div>
   <div>
-    Audit nodes
+<pre>
+<span class="hide2">       + ---------------------------+
+Dat ~= | Dat cli, dat-js, etc       |
+       + ----------+----------------+</span>
+       <span class="hide2">| Other     | Hyperdrive     |</span>
+       <span class="hide2">+ ----------</span>+----------------+
+       <span class="hide2">| Discovery </span>| Hypercore      |
+       <span class="hide2">+ ----------</span>+----------------+
+</pre>
   </div>
   <div>
-    Updated wire protocol*
+    Our core distributed <em>append-only log</em>
   </div>
   <div>
-    Hyper<em>drive</em>
+<pre>
++-----------+
+| hypercore |
++-----------+
+</pre>
   </div>
   <div>
-    Hyperdrive is our file system abstraction
+<pre>
++-----------+
+| hypercore |
++-----------+
+| <em>entry #0</em>  |
+</pre>
   </div>
   <div>
-    Implements a distributed POSIX* FS, focused on real time updates
+<pre>
++-----------+
+| hypercore |
++-----------+
+| entry #0  |
++-----------+
+| <em>entry #1</em>  |
+</pre>
   </div>
   <div>
-    Uses a 2 hypercore design
+<pre>
++-----------+
+| hypercore |
++-----------+
+| entry #0  |
++-----------+
+| entry #1  |
++-----------+
+| <em>entry #2</em>  |
+</pre>
   </div>
   <div>
-    <span class="one">1 metadata hypercore</span><br>
-    <span class="one">1 content hypercore</span>
+<pre>
+\0/
+ |
+</pre>
+  </div>
+  <div>
+<pre>
+\0/
+ |   <---->   \0/
+               |
+</pre>
+  </div>
+  <div>
+<pre>
+\0/
+ |   <---->   \0/
+               |  <--->  \0/
+                          |
+</pre>
+  </div>
+  <div>
+    <span class="one"><em>HSM</em> support</span><br>Noise<br><span class="one">Updated wire protocol</span>
+  </div>
+  <div>
+    Status:<br>
+    <em>Stable</em> and battle tested.
+  </div>
+  <div>
+<pre>
+<span class="hide2">       + ---------------------------+
+Dat ~= | Dat cli, dat-js, etc       |
+       + ----------</span>+----------------+
+       <span class="hide2">| Other     </span>| Hyperdrive     |</span>
+       <span class="hide2">+ ----------</span>+----------------+
+       <span class="hide2">| Discovery | Hypercore      |</span>
+       <span class="hide2">+ ----------+----------------+</span>
+</pre>
+  </div>
+  <div>
+    Hyperdrive is our <em>file system</em> abstraction
+  </div>
+  <div>
+    Implements a <em>distributed POSIX* FS</em>, focused on <em>real time</em> updates
+  </div>
+  <div>
+    Currently uses a <em>2</em> Hypercore design
+  </div>
+  <div>
+    <span class="one">1 metadata Hypercore</span><br>
+    <span class="one">1 content Hypercore</span>
   </div>
   <div>
     Metadata hypercore:
@@ -74,10 +217,10 @@
 </pre>
   </div>
   <div>
-    lookup-tree-index is an embedded data structure that allows distributed random access
+    lookup-tree-index is an embedded data structure that allows <em>distributed random access</em>
   </div>
   <div>
-    <span class="one">Upcoming version: Hyperdrive 10</span>
+    <span class="one">Upcoming version: Hyperdrive <em>10</em></span>
   </div>
   <div>
     <span class="one">Andrew Osheroff (andrewosh)</span>
@@ -101,58 +244,58 @@
     <em>Problem</em>:<br> Writing tons of files to a folder slows down lookups
   </div>
   <div>
-    The current tree index does a linear scan of a folder to find an entry
+    The current tree index does a <em>linear scan</em> of a folder to find an entry
   </div>
   <div>
-    <em>Solution</em>:<br> In Hyperdrive 10 we moved to a hash trie (HAMT)
+    <em>Solution</em>:<br> In Hyperdrive 10 we moved to a <em>hash trie</em> (HAMT)
   </div>
   <div>
-    Find any entry in log4(metadata.length) lookups
+    Find any entry in <em>log4(metadata.length)</em> lookups
   </div>
   <div>
     HAMT crash course. We want to support:
 
 <pre>
-drive.get('/file/path/somewhere') -> entry
+drive.get(<em>'/file/path/somewhere'</em>) -> entry
 </pre>
   </div>
   <div>
     <span class="one">We only append only storage, so we can do:</span>
 
 <pre>
-seq = core.append(data)
-data = core.get(seq)
+<em>seq</em> = core.append(<em>data</em>)
+<em>data</em> = core.get(<em>seq</em>)
 </pre>
   </div>
   <div>
 <pre>
-append({ name: '/file/path/somewhere' })
+append({ name: <em>'/file/path/somewhere'</em> })
 </pre>
   </div>
   <div>
 <pre>
-trie_path('/file/path/somewhere') ->
-  base4_hash('file') + base4_hash('path') + base4_hash('somewhere')
+trie_path(<em>'/file/path/somewhere'</em>) ->
+  base4_hash(<em>'file'</em>) + base4_hash(<em>'path'</em>) + base4_hash(<em>'somewhere'</em>)
 </pre>
   </div>
   <div>
 <pre>
-trie_path('/file/path/somewhere') ->
-  '30103132' + '13200133' + '22330001'                            <span style="color: transparent;">.</span>
+trie_path(<em>'/file/path/somewhere')</em> ->
+  <em>'30103132'</em> + <em>'13200133'</em> + <em>'22330001'</em>                            <span style="color: transparent;">.</span>
 </pre>
   </div>
   <div>
 <pre>
-trie_path('/file/path/somewhere') ->
-  '301031321320013322330001'                                      <span style="color: transparent;">.</span>
+trie_path(<em>'/file/path/somewhere'</em>) ->
+  <em>'301031321320013322330001'</em>                                      <span style="color: transparent;">.</span>
 </pre>
   </div>
   <div>
-    Write pointers to each latest core entry that shares a prefix off your trie path
+    Write pointers to <em>each latest core entry</em> that shares a <em>prefix</em> off your trie path
   </div>
   <div>
 <pre>
-#42                <span style="color: transparent;">.</span>
+#42                 <span style="color: transparent;">.</span>
 
 3
 0
@@ -182,7 +325,7 @@ trie_path('/file/path/somewhere') ->
   </div>
   <div>
 <pre>
-#42  #39           <span style="color: transparent;">.</span>
+#42  #39            <span style="color: transparent;">.</span>
 
 3    3
 0    0
@@ -212,13 +355,13 @@ trie_path('/file/path/somewhere') ->
   </div>
   <div>
 <pre>
-#42  #39           <span style="color: transparent;">.</span>
+#42  #39            <span style="color: transparent;">.</span>
 
-<span style="color: red;">3    3</span>
-<span style="color: red;">0    0</span>
-<span style="color: red;">1    1</span>
-<span style="color: red;">0    0</span>
-<span style="color: red;">3    3</span>
+<em>3    3</em>
+<em>0    0</em>
+<em>1    1</em>
+<em>0    0</em>
+<em>3    3</em>
 1    2
 3    0
 2    0
@@ -242,14 +385,14 @@ trie_path('/file/path/somewhere') ->
   </div>
   <div>
 <pre>
-#42                <span style="color: transparent;">.</span>
+#42                 <span style="color: transparent;">.</span>
 
 3
 0
 1
 0
-3 --+
-1   2 (#39)
+3 ---+
+1    2 (#39)
 3
 2
 1
@@ -272,14 +415,14 @@ trie_path('/file/path/somewhere') ->
   </div>
   <div>
 <pre>
-#42                <span style="color: transparent;">.</span>
+#42                 <span style="color: transparent;">.</span>
 
-3 --+
-0   1 (#35)
+3 ---+
+0    1 (#35)
 1
 0
-3 --+
-1   2 (#39)
+3 ---+
+1    2 (#39)
 3
 2
 1
@@ -302,14 +445,14 @@ trie_path('/file/path/somewhere') ->
   </div>
   <div>
 <pre>
-#42                <span style="color: transparent;">.</span>
+#42                 <span style="color: transparent;">.</span>
 
-3 --+
-0   1 (#35)
-1   (max 3 branches)
+3 ---+
+0    1 (#35)
+1    (max 3 branches)
 0
-3 --+
-1   2 (#39)
+3 ---+
+1    2 (#39)
 3
 2
 1
@@ -331,14 +474,14 @@ trie_path('/file/path/somewhere') ->
 </pre>
   </div>
   <div>
-    The <span class="one">lookup-tree-index</span> contains only the branch pointers
+    The <em class="one">lookup-tree-index</em> contains only the <em>branch pointers</em>
   </div>
   <div>
     lookup-tree-index:
 <pre>
 [
-  [ 1, 1, 35 ] // branches at index 1, into 1 (seq #35)
-  [ 4, 2, 39 ] // branches at index 4, into 2 (seq #39)
+  [ <em>1</em>, <em>1</em>, <em>35</em> ] // branches at index 1, into 1 (seq #35)
+  [ <em>4</em>, <em>2</em>, <em>39</em> ] // branches at index 4, into 2 (seq #39)
 ]
 </pre>
   </div>
@@ -346,14 +489,14 @@ trie_path('/file/path/somewhere') ->
     To find a file path do:
 
 <pre>
-  target_trie_path = trie_path('/path/we/want')
-  head = core.get(core.length - 1)
+  target_trie_path = trie_path(<em>'/path/we/want'</em>)
+  head = core.get(core.length - <em>1</em>)
 </pre>
   </div>
   <div>
 <pre>
 lookup (head) ->
-  prefix = calc_shared_prefix(head.trie_path, target_trie_path)
+  prefix = <em>calc_shared_prefix</em>(head.trie_path, target_trie_path)
 
   if (prefix == head.trie_path)
     return head
@@ -365,66 +508,301 @@ lookup (head) ->
 </pre>
   </div>
   <div>
-    Status:<br>
-    Fully working, tested, and implemented 😎
+<pre>
+lookup (head) ->
+  prefix = <em style="color: inherit">calc_shared_prefix</em>(head.trie_path, target_trie_path)
+
+  <em>if (prefix == head.trie_path)
+    return head</em>
+
+  if (is_branch(head, prefix))
+    return lookup(get_branch_node(head, prefix))
+
+  return 404
+</pre>
   </div>
   <div>
-    Problem: Collaborating with and consuming multiple Hyperdrives is hard
+<pre>
+lookup (head) ->
+  prefix = <em style="color: inherit">calc_shared_prefix</em>(head.trie_path, target_trie_path)
+
+  if (prefix == head.trie_path)
+    return head
+<em>
+  if (is_branch(head, prefix))
+    return lookup(get_branch_node(head, prefix))</em>
+
+  return 404
+</pre>
+  </div>
+  <div>
+<pre>
+lookup (head) ->
+  prefix = <em style="color: inherit">calc_shared_prefix</em>(head.trie_path, target_trie_path)
+
+  if (prefix == head.trie_path)
+    return head
+
+  if (is_branch(head, prefix))
+    return lookup(get_branch_node(head, prefix))
+
+  <em>return 404</em>
+</pre>
+  </div>
+  <div>
+    Status:<br>
+    <em>Fully working</em>, tested, and implemented 😎
+  </div>
+  <div>
+    Problem: <em>Collaborating</em> with and consuming multiple Hyperdrives is hard
   </div>
   <div>
     (Multiwriter)
   </div>
   <div>
-    Solution: Hyperdrive 10 adds mount support
+    Solution: Hyperdrive 10 adds <em>mount</em> support
   </div>
   <div>
-    Mounts mean you can mount other hyperdrives inside your own hyperdrive
+    Mounts mean you can mount other Hyperdrives <em>inside</em> your own Hyperdrive
   </div>
   <div>
 <pre>
-drive.mount('/some/path', 'deadbeef')
+drive.mount(<em>'/some/path'</em>, <em>'dat://deadbeef...'</em>)
 </pre>
   </div>
   <div>
-    Mounts are persisted inside the metadata in a scalable way
+    Mounts are <em>persisted</em> inside the metadata in a <em>scalable</em> way
   </div>
   <div>
-    Mounted drives can symlink files outside their own drive*
+    Mounted drives can <em>symlink</em> files outside their own drive*
   </div>
   <div>
-    Much simpler and more flexible design that our previous endevours
-  </div>
-  <div>
-    Mount points are simply stored inside the hash trie
+    Much <em>simpler</em> and more <em>flexible</em> design that our previous endevours
   </div>
   <div>
 <pre>
-drive.mount('/some/path', 'deadbeef')
-drive.get('/some/path/and/stuff')
-
-1. Does a lookup in the local trie.
-2. The last node has a mount flag set.
-3. Loads the mounted drive and performs
-   a .get('/and/stuff') on the mount
+drive.mount(<em>'/some/path'</em>, <em>'dat://deadbeef...'</em>)
+drive.get(<em>'/some/path/and/stuff'</em>)
 </pre>
   </div>
   <div>
     Status:<br>
-    ~Working, implemented, but needs testing 👍
+    ~<em>Working</em>, implemented, but needs testing 👍
   </div>
   <div>
-    We plan on adding support for "overlapping" mounts as well, but in later releases.
+    We plan on adding support for "<em>overlapping</em>" mounts as well, but in later releases
   </div>
   <div>
-    Inodes
+    <span class="one">Hyperdrive is a POSIX<em>*</em> FS</span>
   </div>
   <div>
-    FUSE
+    <span class="one">Hyperdrive is <em>almost</em> a POSIX FS</span>
+  </div>
+  <div>
+    Problem:<br>
+    We do not handle <em>random-access writes</em> (RAW) efficiently.
+  </div>
+  <div>
+<pre>
+fd = drive.open(<em>'/hello/world.txt'</em>, <em>'w'</em>)
+drive.write(fd, <em>0</em>, <em>'hello'</em>)
+drive.write(fd, <em>10000</em>, <em>'world'</em>)
+</pre>
+  </div>
+  <div>
+    Although a bit <em>exotic</em> RAW are important for <em>completeness</em>
+  </div>
+  <div>
+    Given good RAW support we can run apps like <em>SQL</em>, <em>MongoDB</em> on top of Hyperdrive<em>!</em>
+  </div>
+  <div>
+    All <em>versioned</em> and in <em>real time</em>
+  </div>
+  <div>
+    Solution:<br>
+    Add an <em>inode</em> inspired data structure
+  </div>
+  <div>
+    Today a file metadata entry just has a <em>contentPointer</em> and <em>length</em>
+  </div>
+  <div>
+<pre>
+              | Content Hypercore
+              + -----------------
+              | block #0
+              | block #1
+contentPtr -> | <em>block #2</em>
+              | <em>block #3</em>
+              | <em>...</em>
+length=40     | <em>block #42</em>
+</pre>
+  </div>
+  <div>
+    <img src="2560px-Ext2-inode.svg.png">
+  </div>
+  <div>
+    Moves Hyperdrive to a <em>3</em> Hypercore structure
+  </div>
+  <div>
+    <span class="one">1 metadata hypercore</span><br>
+    <span class="one"><em>1 inode hypercore</em></span><br>
+    <span class="one">1 content hypercore</span>
+  </div>
+  <div>
+    <em>Reuses</em> the trie structure above
+  </div>
+  <div>
+    Instead of storing hashes it uses an <em>incrementing number</em> in base4
+  </div>
+  <div>
+<pre>
+alloc_inode() ->
+  <em>'0000000000000000'</em>
+alloc_inode() ->
+  <em>'0000000000000001'</em>
+...
+</pre>
+  </div>
+  <div>
+<pre>
+...
+alloc_inode() ->
+  <em>'0000000000000033'</em>
+alloc_inode() ->
+  <em>'0000000000000100'</em>
+</pre>
+  </div>
+  <div>
+    In the value of the inode we store an <em>interval tree</em> of writes
+  </div>
+  <div>
+<pre>
+inode -> {
+  writes: [
+    { bytes: [<em>10</em>, <em>100</em>], contentPtr: <em>42</em>, length: <em>10</em> },
+    { bytes: [<em>1000</em>, <em>1001</em>], contentPtr: <em>1</em>, length: <em>1</em> },
+    ...
+  ]
+}
+</pre>
+  </div>
+  <div>
+    When the inode gets too big we <em>split</em> it
+  </div>
+  <div>
+<pre>
+# pick a global max file size, fx 1 exa byte
+
+put (path, entry, max_size) ->
+  inode = get(path, entry)
+
+  if (inode_size >= max_inode_size) {
+    <em style="color: inherit;">remove(path)
+    put(path + '0', entries < max_size / 2, max_size / 2)
+    put(path + '1', entries >= max_size / 2, max_size / 2)</em>
+  } else {
+    inode.push(entry)
+    insert_into_trie(path, inode)
+  }
+}
+</pre>
+  </div>
+  <div>
+<pre>
+# pick a global max file size, fx 1 exa byte
+
+put (path, entry, max_size) ->
+  inode = get(path, entry)
+
+  if (inode_size >= max_inode_size) {
+    <em>remove(path)
+    put(path + '0', entries < max_size / 2, max_size / 2)
+    put(path + '1', entries >= max_size / 2, max_size / 2)</em>
+  } else {
+    inode.push(entry)
+    insert_into_trie(path, inode)
+  }
+}
+</pre>
+  </div>
+  <div>
+<pre>
+# pick a global max file size, fx 1 exa byte
+
+put (path, entry, max_size) ->
+  inode = get(path, entry)
+
+  if (inode_size >= max_inode_size) {
+    <em style="color: inherit;">remove(path)
+    put(path + '0', entries < max_size / 2, max_size / 2)
+    put(path + '1', entries >= max_size / 2, max_size / 2)</em>
+  } else {
+    <em>inode.push(entry)
+    insert_into_trie(path, inode)</em>
+  }
+}
+</pre>
+  </div>
+  <div>
+<pre>
+byte_offset_path (byte_offset, max_size) ->
+  if (max_size <= 1) return ''
+
+  next_bucket = byte_offset < max_size / 2
+    ? '0'
+    : '1'
+
+  return next_bucket
+    + byte_offset_path(byte_offset, max_size / 2)
+</pre>
+  </div>
+  <div>
+<pre>
+inode = trie_path(inode_num)
+  + byte_offset_path(offset, 1 exa byte)   <span style="color: transparent;">.</span>
+</pre>
+  </div>
+  <div>
+<pre>
+inode = trie_path(1)
+  + byte_offset_path(0, 1 exa byte)        <span style="color: transparent;">.</span>
+</pre>
+  </div>
+  <div>
+<pre>
+inode = <em>'0000000000000001'</em>                  <span style="color: transparent;">.</span>
+  + <em>'000...000'</em>
+</pre>
+  </div>
+  <div>
+    <em>Stop trie traversal</em> as soon as you hit an inode that has your <em>interval</em>
+  </div>
+  <div>
+    Status:<br><em>Design</em> state <span class="one">(will be a 10.1 feature)</span>
+  </div>
+  <div>
+    <em>FUSE</em> support
+  </div>
+  <div>
+    We wanna make Hyperdrive be mountable as an <em>actual FS</em>
+  </div>
+  <div>
+    FUSE <em>UX</em> in Node.js is ... <em>not great</em>
+  </div>
+  <div>
+    Download a <em>peer dependency</em> online, very dev-y.
+  </div>
+  <div>
+    <a href="http://github.com/fuse-friends">http://github.com/fuse-friends</a>
   </div>
   <div>
     Follow v10 dev ->
     <a href="https://github.com/mafintosh/hyperdrive/pull/233">https://github.com/mafintosh/hyperdrive/pull/233</a>
   </div>
+  <div>
+    Thank you
+  </div>
+  <!--
   <div>
     Hyper<em>swarm</em>
   </div>
@@ -434,5 +812,6 @@ drive.get('/some/path/and/stuff')
   <div>
     Tying it all together
   </div>
+  -->
 </body>
 </html>
